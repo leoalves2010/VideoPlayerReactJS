@@ -1,16 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { TimeService } from "../../../data/services/TimeService";
-
-const _selectedVideo = {
-    id: 1,
-    title: "Cars",
-    duration: 8,
-    cover: "https://images.freeimages.com/images/large-previews/b53/old-car-1450730.jpg",
-    url: "https://joy.videvo.net/videvo_files/video/free/2018-07/large_watermarked/180607_A_101_preview.mp4",
-};
+import { VideoContext } from "../../../data/providers/VideoProvider";
 
 export default function VideoPlayer(props) {
-    const video = _selectedVideo;
+    const [_state] = useContext(VideoContext);
+    const video = _state.selectedVideo;
     const videoRef = useRef(null);
     const progressTimer = useRef(null);
     const [isPlaying, setPlay] = useState(false);
