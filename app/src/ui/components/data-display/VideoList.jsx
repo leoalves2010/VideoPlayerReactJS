@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
 import VideoItem from "./VideoItem";
-import { VideoContext } from "../../../data/providers/VideoProvider";
+import { VideoContext } from "../../../data/video/VideoProvider";
 
 export default function VideoList(props) {
-    const [_state] = useContext(VideoContext);
+    const [videoState, videoDispatch] = useContext(VideoContext);
     function onClick(video) {
-        console.log(video);
+        videoDispatch({
+            type: 'select',
+            value: video
+        })
     }
 
     return (
         <ul className="list">
-            {_state.videoList.map((video) => (
+            {videoState.videoList.map((video) => (
                 <VideoItem key={video.id} video={video} onClick={onClick} />
             ))}
         </ul>

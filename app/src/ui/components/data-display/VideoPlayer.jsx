@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { TimeService } from "../../../data/services/TimeService";
-import { VideoContext } from "../../../data/providers/VideoProvider";
+import { VideoContext } from "../../../data/video/VideoProvider";
 
 export default function VideoPlayer(props) {
     const [_state] = useContext(VideoContext);
@@ -25,6 +25,7 @@ export default function VideoPlayer(props) {
             videoElement.removeEventListener("pause", pause);
             videoElement.removeEventListener("seeked", onProgress);
         };
+        // eslint-disable-next-line
     }, [video]);
 
     useEffect(() => {

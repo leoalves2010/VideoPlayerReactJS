@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { VideoContext } from "../../../data/video/VideoProvider";
 
 export default function NewVideoForm(props) {
+    const [, videoDispatch] = useContext(VideoContext);
     const [title, setTitle] = useState("");
     const [duration, setDuration] = useState("");
     const [cover, setCover] = useState("");
@@ -8,12 +10,16 @@ export default function NewVideoForm(props) {
 
     function save() {
         const newVideo = {
+            id: Math.floor(Date.now() + Math.random() * 1000),
             title,
             duration,
             cover,
             url,
         };
-        //save
+        videoDispatch({
+            type: "add",
+            value: newVideo,
+        });
         reset();
     }
 
